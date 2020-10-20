@@ -1,0 +1,206 @@
+<!doctype html>
+<html><html>
+<head>
+<meta charset="UTF-8">
+<title>Hangman</title>
+<script type="text/javascript">
+	var Playerscore = 0;
+	var playerFails = 0;
+	var wordGuess = "";
+	var wordCurrent = "durian";
+	var wordArray = ["apple", "durian", "pear", "orange","grape",];
+	var wordIndex = 0;
+	
+	function setCharAt(str,index, chr){
+		if(index > str.length - 1){
+			return str;
+	}
+		else{
+			
+			return str.substr(0,index) + chr + str.substr(index+1);
+			
+		}
+		
+	}
+		function checkword(letter){
+			var charFound = false;
+			
+			for(var i=0; i<wordCurrent.length; i++){
+				
+				if(wordCurrent[i] === letter){
+					wordGuess = setCharAt(wordGuess, i, letter);
+					charFound = true;
+				}
+			}
+			
+			if(charFound == false){
+				updateFails();
+				if(playerFails >= 6){
+					alert("Game Over");
+				}
+			}
+			
+			if(wordCurrent === wordGuess){
+				updateScore();
+			}
+			
+			document.getElementById('word').innerHTML=wordGuess;
+		}
+	
+	function fetchNewWord(){
+		
+		var lblword = document.getElementById("word");
+		var lblfails = document.getElementById("gameFails");
+		
+		playerFails = 0;
+		lblfails.innerHTML =0;
+		
+		wordGuess = "";
+		
+		wordCurrent = wordArray[wordIndex];
+		if (wordIndex < wordArray.length -1){
+			wordIndex += 1;
+		}
+		 wordIndex = Math.floor(Math.random() * 5);
+		for (var i = 0; i<wordCurrent.length; i++){
+		
+		wordGuess += "-";
+	}
+			
+		
+		lblword.innerHTML = wordGuess;
+	}
+	
+	updateScore = function(){
+		
+	
+	
+		var lblscore = 
+			document.getElementById("gameScore");
+		
+		Playerscore = Playerscore + 1;
+		lblscore.innerHTML = Playerscore;
+	}
+	
+	function updateFails()
+	{
+		var lblFails=document.getElementById("gameFails");
+		playerFails= playerFails +1;
+		lblFails.innerHTML = playerFails;
+	}
+	
+	</script>
+</head>
+
+<body>
+	<table border ="5">
+	
+		
+	<tr>
+		<td colspan =4>score :
+		<label id="gameScore">0</label>
+		</td>
+		<td colspan =7>---Hangman---</td>
+		<td colspan =2 rowspan= 2>
+		<input type="button" value="Start"
+			   onclick="fetchNewWord();"/>
+		</td>
+		
+		</tr>
+		<tr>
+			<td colspan =4> Fails(6) :<label id="gameFails">0</label></td>
+			<label>0</label>
+			</td>
+		<td colspan =7>
+			<label id="word">Click Start to get the word</label>
+	</td>
+		
+		
+		</tr>
+	<tr>
+		<td>
+		<input type="button" value="A" onclick="checkword('a');"/>
+		</td>
+		<td>
+		<input type="button" value="B" onclick="checkword('b');"/>
+		</td>
+		<td>
+		<input type="button" value="C" onclick= "checkword('c');"/>
+		</td>
+		<td>
+		<input type="button" value="D" onclick= "checkword('d');"/>
+		</td>
+		<td>
+		<input type="button" value="E" onclick= "checkword('e');"/>
+		</td>
+		<td>
+		<input type="button" value="F" onclick= "checkword('f');"/>
+		</td>
+		<td>
+		<input type="button" value="G" onclick= "checkword('g');"/>
+		</td>
+		<td>
+		<input type="button" value="H" onclick= "checkword('h');"/>
+		</td>
+		<td>
+		<input type="button" value="I" onclick= "checkword('i');"/>
+		</td>
+		<td>
+		<input type="button" value="J" onclick= "checkword('j');"/>
+		</td>
+		<td>
+		<input type="button" value="K" onclick= "checkword('k');"/>
+		</td>
+		<td>
+		<input type="button" value="L" onclick= "checkword('l');"/>
+		</td>
+		<td>
+		<input type="button" value="M" onclick= "checkword('m');"/>
+		</td>
+		</tr>
+			<tr>
+		<td>
+			<input type="button" value="N" onclick= "checkword('n');"/>	
+		</td>
+		<td>
+		<input type="button" value="O" onclick= "checkword('o');"/>
+		</td>
+		<td>
+		<input type="button" value="P" onclick= "checkword('p');"/>		
+		</td>
+		<td>
+		<input type="button" value="Q" onclick= "checkword('q');"/>	
+		</td>
+		<td>
+		<input type="button" value="R" onclick= "checkword('r');"/>
+		</td>	 
+		<td>
+		<input type="button" value="S" onclick= "checkword('s');"/>
+        </td>
+		<td>
+		<input type="button" value="T" onclick= "checkword('t');"/>
+	    </td>
+		<td>
+		<input type="button" value="U" onclick= "checkword('u');"/>
+        </td>
+		<td>
+		<input type="button" value="V" onclick= "checkword('v');"/>
+        </td>
+		<td>
+		<input type="button" value="W" onclick= "checkword('w');"/>
+        </td>
+		<td>
+		<input type="button" value="X" onclick= "checkword('x');"/>
+        </td>
+		<td>
+		<input type="button" value="Y" onclick= "checkword('y');"/>
+        </td>
+		<td>
+		<input type="button" value="Z" onclick= "checkword('z');"/>
+        </td>
+		</tr>
+	</table>
+
+<body>
+</body>
+</html>
